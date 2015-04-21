@@ -1,6 +1,0 @@
-File-A:
-20
-File-B:
-17
-File-C:
-150
