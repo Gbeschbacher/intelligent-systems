@@ -1,0 +1,17 @@
+function [] = Task4()
+% dA = importdata('Clustering_features/features_A.txt');
+% dB = importdata('Clustering_features/features_B.txt');
+dC = importdata('Clustering_features/features_C.txt');
+
+Y_dC_PCA = pca(dC, 2);
+Y_dC_SAMMON = sammon(dC);
+Y_dC_SNE = compute_mapping(dC, 'SNE');
+Y_dC_TSNE = tsne(dC, [],2,[], 5);
+
+% PLOT(Y_dC_PCA, 'DC PCA');
+% PLOT(Y_dC_SAMMON, 'DC SAMMON');
+% PLOT(Y_dC_SNE, 'DC SNE');
+PLOT(Y_dC_TSNE, 'DC TSNE');
+PLOT(Y_dC_TSNE2, 'DC TSNE 2');
+
+
