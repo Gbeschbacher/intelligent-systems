@@ -66,8 +66,6 @@ function [ codebook, MMQE_val ] = SOM( X, T, E, map_rows, map_cols )
         codebook = codebook_nextgen;
 
         MMQE_val = MMQE(X, codebook);
-        MMQE_val
-        t
         if MMQE_val < E
             break;
         end

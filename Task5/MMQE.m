@@ -19,8 +19,6 @@ function [ MMQE_value ] = MMQE( X, codebook )
         voronoi_set(bmu_idx(1), bmu_idx(2)) = {[voronoi_set{bmu_idx(1), bmu_idx(2)} bmu_idx]};
     end
 
-
-
     %% DO SAMSING - P. Meerwald 2014
     MMQE_value = 0;
     for row = 1:size(codebook, 1),
@@ -30,15 +28,14 @@ function [ MMQE_value ] = MMQE( X, codebook )
             % Without voronoi set because for MMQE the set is cancled
             MQE = 0;
             for v_idx = 1:size(voronoi_set{row, col}),
-                x = X(voronoi_set{row, col}(v_idx, :);
-                }
+                x = X(voronoi_set{row, col}(v_idx), :);
                 MQE = MQE + (pdist2(x, current_unit, 'euclidean'));
             end
 
             MMQE_value = MMQE_value + ( 1 /  size(X, 1) ) * MQE;
         end
     end
-
+            
 
 end
 
