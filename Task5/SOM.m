@@ -1,11 +1,11 @@
-function [ codebook ] = SOM( X, T, E, map_rows, map_cols )
+function [ codebook, MMQE_val ] = SOM( X, T, E, map_rows, map_cols )
     %% Size of Xset
-    
+
     m = map_rows;
-    n = map_cols; 
+    n = map_cols;
 
     X_num_cols = size(X, 2);
-    
+
 
     %% Initializing codebook
     % Initialize each unit (model vector) mi to represent a randomly selected X item
@@ -39,7 +39,7 @@ function [ codebook ] = SOM( X, T, E, map_rows, map_cols )
             for col = 1:n,
 
                 % euclidean distance between a and b where a and b are vectors
-                % find the ‘winning unit’ (best matching unit) uc with 
+                % find the ‘winning unit’ (best matching unit) uc with
                 % mc = maxi(sim(mi,x))
                 current_unit = (squeeze(codebook(row, col, :))).';
                 current_dist = pdist2(current_unit , x);
@@ -56,7 +56,7 @@ function [ codebook ] = SOM( X, T, E, map_rows, map_cols )
                 % mi(t +1) = mi(t) + ?(t) · uic(t) · [x?mi(t)]
                 gauss_mod = UTIL([row, col], min_unit_idx, t);
                 euclidian_diff = x - squeeze(codebook(row, col, :)).';
-                adaption_vector = squeeze(LR(t) * gauss_mod * euclidian_diff).';            
+                adaption_vector = squeeze(LR(t) * gauss_mod * euclidian_diff).';
 
                 codebook_nextgen(row, col, :) = ...
                     squeeze(codebook(row, col, :)) + adaption_vector;
